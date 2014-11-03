@@ -109,16 +109,17 @@ print
 print "Zadanie 4.6"
 seq = [1, (2, 3), [], [4, (5, 6, 7)], 8, [9]]
 print seq
-def sum_seq(sequnce, suma):
+def sum_seq(sequnce):
+    suma = 0
     for item in sequnce:
         if isinstance(item, (list, tuple)) == True:
-            sum_seq(item, suma)
+            suma += sum_seq(item)
         else:
-            suma.append(item)
+            suma += item
 
-    return sum(suma)
+    return suma
 print
-print sum_seq(seq, [])
+print sum_seq(seq)
 
 #4.7
 print
