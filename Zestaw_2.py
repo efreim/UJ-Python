@@ -1,3 +1,5 @@
+#wyslane
+
 line = "Just follow the following simple steps to"
     # 2.10
 item = line.split()

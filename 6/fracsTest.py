@@ -16,19 +16,19 @@ class TestFracs(unittest.TestCase):
         self.assertEqual(self.three.__cmp__(self.five), 1)
 
     def test_add(self):
-        self.assertEqual(self.one.__add__(self.two), Frac(3, 4))
-        self.assertEqual(self.one.__add__(self.four), Frac(3, 6))
-        self.assertEqual(self.one.__add__(self.five), Frac(1, 10))
+        self.assertEqual(self.one+self.two, Frac(3, 4))
+        self.assertEqual(self.one+self.four, Frac(3, 6))
+        self.assertEqual(self.one+self.five, Frac(1, 10))
 
 
     def test_sub(self):
-        self.assertEqual(self.one.__sub__(self.two), Frac(1, 4))
+        self.assertEqual(self.one-self.two, Frac(1, 4))
 
     def test_mul(self):
-        self.assertEqual(self.two.__mul__(self.two), Frac(1, 16))
+        self.assertEqual(self.two*self.two, Frac(1, 16))
 
     def test_div(self):
-        self.assertEqual(self.three.__div__(self.two), Frac(-2, 3))
+        self.assertEqual(self.three/self.two, Frac(-2, 3))
 
     def test_pos(self):
         self.assertEqual(self.one.__pos__(), Frac(1, 2))

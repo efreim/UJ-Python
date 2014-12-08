@@ -1,4 +1,4 @@
-
+#wyslane
 #3.3
 print
 print "Zadanie 3.3"

@@ -4,6 +4,8 @@ class Frac:
     def __init__(self, x=0, y=1):
         self.x = x
         self.y = y
+        # Sprawdzamy, czy y=0.
+
 
     def __str__(self):
         if self.y == 1:
@@ -14,7 +16,6 @@ class Frac:
     def __repr__(self):        # zwraca "Frac(x, y)"
         return "Frac(%s, %s)" % (self.x, self.y)
 
-    @staticmethod
     def com_den(self, other):
         common_denominator = (self.y * other.y) / fractions.gcd(self.y, other.y)
         self.x = self.x * (common_denominator / self.y)
@@ -24,7 +25,7 @@ class Frac:
 
 
     def __cmp__(self, other):
-        self.com_den(self, other)
+        Frac.com_den(self, other)
         if self.x == other.x:
             return 0
         elif self.x > other.x:
@@ -33,26 +34,37 @@ class Frac:
             return -1
 
     def __add__(self, other):
-        self.com_den(self, other)
+        # frac1+frac2, frac+int
+        Frac.com_den(self, other)
         b = self.y
         a = self.x + other.x
         return Frac(a, b)
 
+  #  __radd__ = __add__              # int+frac
+
     def __sub__(self, other):
-        self.com_den(self, other)
+        Frac.com_den(self, other)
         b = self.y
         a = self.x - other.x
         return Frac(a, b)
+
+    def __rsub__(self, other):      # int-frac
+        # tutaj self jest frac, a other jest int!
+        return Frac(self.y * other - self.x, self.y)
 
     def __mul__(self, other):
         a = self.x * other.x
         b = self.y * other.y
         return Frac(a, b)
 
+    __rmul__ = __mul__              # int*frac
+
     def __div__(self, other):
         a = self.x * other.y
         b = self.y * other.x
         return Frac(a, b)
+
+    def __rdiv__(self, other): pass # int/frac
 
     def __pos__(self):
         return self

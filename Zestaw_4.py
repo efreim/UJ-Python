@@ -1,3 +1,4 @@
+#wyslane
 __author__ = 'Jakub Balazinski'
 
 #4.1
