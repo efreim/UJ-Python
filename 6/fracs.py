@@ -1,6 +1,7 @@
 import fractions
-class Frac:
 
+
+class Frac:
     def __init__(self, x=0, y=1):
         self.x = x
         self.y = y
@@ -11,9 +12,9 @@ class Frac:
         if self.y == 1:
             return self.x
         else:
-            return self.x/self.y
+            return self.x / self.y
 
-    def __repr__(self):        # zwraca "Frac(x, y)"
+    def __repr__(self):  # zwraca "Frac(x, y)"
         return "Frac(%s, %s)" % (self.x, self.y)
 
     def com_den(self, other):
@@ -35,36 +36,55 @@ class Frac:
 
     def __add__(self, other):
         # frac1+frac2, frac+int
-        Frac.com_den(self, other)
-        b = self.y
-        a = self.x + other.x
-        return Frac(a, b)
+        if isinstance(other, Frac):
+            Frac.com_den(self, other)
+            return Frac(self.x + other.x, self.y)
+        elif isinstance(other, int):
+            return Frac(self.x + other * self.y, self.y)
 
-  #  __radd__ = __add__              # int+frac
+    def __radd__(self, other):  # int+frac
+        return Frac(other * self.y + self.x, self.y)
+
 
     def __sub__(self, other):
-        Frac.com_den(self, other)
-        b = self.y
-        a = self.x - other.x
-        return Frac(a, b)
+        if isinstance(other, Frac):
+            Frac.com_den(self, other)
+            return Frac(self.x - other.x, self.y)
+        elif isinstance(other, int):  # frac - int
+            return Frac(self.x - other * self.y, self.y)
 
-    def __rsub__(self, other):      # int-frac
+    def __rsub__(self, other):  # int-frac
         # tutaj self jest frac, a other jest int!
-        return Frac(self.y * other - self.x, self.y)
+        return Frac(other * self.y - self.x, self.y)
 
     def __mul__(self, other):
-        a = self.x * other.x
-        b = self.y * other.y
-        return Frac(a, b)
+        if isinstance(other, Frac):
+            return Frac(self.x * other.x, self.y * other.y)
+        elif isinstance(other, int):
+            return Frac(self.x * other, self.y)
 
-    __rmul__ = __mul__              # int*frac
+    def __rmul__(self, other):  # int*frac
+        return Frac(other * self.x, self.y)
+
 
     def __div__(self, other):
-        a = self.x * other.y
-        b = self.y * other.x
-        return Frac(a, b)
 
-    def __rdiv__(self, other): pass # int/frac
+        if isinstance(other, Frac):
+            if other.y == 0:
+                raise ValueError("Nie dziel przez 0")
+            return Frac(self.x * other.y, self.y * other.x)
+
+        elif isinstance(other, int):
+            if other == 0:
+                raise ValueError("Nie dziel przez 0")
+            return Frac(self.x, self.y * other)
+
+    def __rdiv__(self, other):
+        if self.x == 0:
+            raise ValueError("Nie dziel przez 0")
+        else:
+            return Frac(other * self.y, self.x)
+
 
     def __pos__(self):
         return self
