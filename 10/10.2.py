@@ -7,15 +7,12 @@ zgłaszać błąd w przypadku pustego stosu. Metoda push() ma
 zgłaszać błąd w przypadku przepełnienia stosu. Napisać kod
 testujący stos.
 """
-import sys
-import traceback
 
 
 class Stack:
-
     def __init__(self, size=10):
-        self.items = size * [None]      # utworzenie tablicy
-        self.n = 0                      # liczba elementów na stosie
+        self.items = size * [None]  # utworzenie tablicy
+        self.n = 0  # liczba elementów na stosie
         self.size = size
 
     def is_empty(self):
@@ -30,7 +27,7 @@ class Stack:
                 raise IndexError
             else:
                 self.items[self.n] = data
-                self.n = self.n + 1
+                self.n += 1
         except IndexError:
             print "Stos przepelniony, nie mozna niczego dodac"
 
@@ -39,13 +36,12 @@ class Stack:
             if self.is_empty():
                 raise IndexError
             else:
-                self.n = self.n - 1
+                self.n -= 1
                 data = self.items[self.n]
-                self.items[self.n] = None    # usuwam referencję
+                self.items[self.n] = None  # usuwam referencję
                 return data
         except IndexError:
             print "Stos pusty, nie mozna niczego usunac"
-
 
     def print_stack(self):
         for item in range(0, self.n):
@@ -63,7 +59,7 @@ stack.push(3)
 stack.push(5)
 stack.push(4)
 stack.push(1)
-stack.print_stack
+stack.print_stack()
 print
 print "Dodaje wartosc wykraczajaca poza rozmiar stosu"
 stack.push(2)
