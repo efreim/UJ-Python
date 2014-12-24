@@ -9,7 +9,7 @@ from random import randrange
 class RandomQueue:
     def __init__(self, size):
         self.items = (size + 1) * [None]  # utworzenie tablicy
-        self.n = 0  # liczba elementów na stosie
+        self.n = 0  # liczba elementów
         self.size = (size + 1)
 
     def insert(self, data):
