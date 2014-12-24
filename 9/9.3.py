@@ -56,4 +56,4 @@ head = Node(5, head)          # [5, 9, 4, 2, 3]
 
 print_list(head)
 print "max ", find_max(head)
-print "min", find_min(head)
+print "min ", find_min(head)
