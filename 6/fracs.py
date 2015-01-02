@@ -7,7 +7,6 @@ class Frac:
         self.y = y
         # Sprawdzamy, czy y=0.
 
-
     def __str__(self):
         if self.y == 1:
             return self.x

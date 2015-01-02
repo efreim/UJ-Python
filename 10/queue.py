@@ -12,33 +12,36 @@ class Queue:
         self.head = 0  # pierwszy do pobrania
         self.tail = 0  # pierwsze wolne
 
+
+    def __str__(self):
+        return self.items
+
+
     def is_empty(self):
         return self.head == self.tail
+
 
     def is_full(self):
         return (self.head + self.n - 1) % self.n == self.tail
 
+
     def put(self, data):
-        try:
-            if self.is_full():
-                raise IndexError
-            else:
-                self.items[self.tail] = data
-                self.tail = (self.tail + 1) % self.n
-        except IndexError:
-            print "Kolejka pelna, nie mozna niczego dodac!"
+        if self.is_full():
+            raise IndexError("Kolejka pelna, nie mozna niczego dodac!")
+        else:
+            self.items[self.tail] = data
+            self.tail = (self.tail + 1) % self.n
+
 
     def get(self):
-        try:
-            if self.is_empty():
-                raise IndexError
-            else:
-                data = self.items[self.head]
-                self.items[self.head] = None  # usuwam referencję
-                self.head = (self.head + 1) % self.n
-                return data
-        except IndexError:
-            print "Kolejka pusta, nie mozna niczego usunac"
+        if self.is_empty():
+            raise IndexError("Kolejka pusta, nie mozna niczego usunac")
+        else:
+            data = self.items[self.head]
+            self.items[self.head] = None  # usuwam referencję
+            self.head = (self.head + 1) % self.n
+            return data
+
 
     def print_queue(self):
         for item in range(self.head, self.n):
@@ -48,23 +51,3 @@ class Queue:
                 print "Kolejka pusta"
                 return
 
-
-que = Queue()
-que.put(4)
-que.put(2)
-que.get()
-
-que.put(1)
-que.put(6)
-que.put(3)
-
-que.print_queue()
-print
-print "Dodaje wartosc wykraczajaca poza rozmiar kolejki"
-que.put(9)
-que.put(10)
-
-print
-print "Usuwam wartosc z pustej kolejki"
-new_que = Queue()
-new_que.get()
