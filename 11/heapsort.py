@@ -2,6 +2,11 @@
 
 import lists
 
+"""
+algorytm jest niestabilny - ale szybki
+zlozonosc czasowa: O(nlog n)
+zlozonosc pamieciowa: calkowita O(n), pomocnicza O(1)
+"""
 
 def heap_sort(my_list):
     heapify(my_list)
