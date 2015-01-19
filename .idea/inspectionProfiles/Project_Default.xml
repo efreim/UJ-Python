@@ -6,6 +6,7 @@
       <option name="ignoredNames">
         <list>
           <option value="next" />
+          <option value="max" />
         </list>
       </option>
     </inspection_tool>
